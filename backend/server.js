@@ -59,14 +59,21 @@ function sendPasswordResetEmail(email, newPassword, callback) {
     from: process.env.SMTP_FROM_EMAIL,
     to: email,
     subject: "Journey Mapper Password Reset Request",
-    html: `<html><body style='font-family: Arial, sans-serif; color: #333;'>
-        <h1 style='text-align: center; color: #007BFF;'>Password Reset Request</h1>
-        <p style='font-size: 16px;'>Hello,</p>
-        <p style='font-size: 16px;'>We received a request to reset your password. Below is your new password:</p>
-        <div style='background-color: #007BFF; color: white; padding: 10px; border-radius: 5px; font-size: 18px; font-weight: bold; text-align: center;'>${newPassword}</div>
-        <p style='font-size: 16px;'>If you did not request a password reset, please ignore this email or contact support immediately.</p>
-        <p style='font-size: 16px;'>Thank you, <br> Journey Mapper Support Team</p>
-    </body></html>`,
+    html: `<html>
+      <body style='font-family: "Segoe UI", Arial, sans-serif; background-color: #f4f7fc; color: #333; padding: 20px;'>
+        <div style='max-width: 600px; margin: 0 auto; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>
+          <h1 style='text-align: center; color: #007BFF;'>Password Reset Request</h1>
+          <p style='font-size: 16px; color: #555;'>Hello,</p>
+          <p style='font-size: 16px; color: #555;'>We received a request to reset your password. Please find your new password below:</p>
+          <div style='background-color: #007BFF; color: white; padding: 15px; border-radius: 5px; font-size: 18px; font-weight: bold; text-align: center; letter-spacing: 1px;'>${newPassword}</div>
+          <p style='font-size: 16px; color: #555; margin-top: 20px;'>If you did not request this password reset, simply ignore this email or get in touch with our support team for assistance.</p>
+          <p style='font-size: 16px; color: #555;'>Thank you, <br> <strong>Journey Mapper Support Team</strong></p>
+        </div>
+        <footer style='text-align: center; font-size: 14px; color: #aaa; margin-top: 20px;'>
+          <p>&copy; 2025 Journey Mapper. All rights reserved.</p>
+        </footer>
+      </body>
+    </html>`,
   };
 
   transporter.sendMail(mailOptions, callback);
