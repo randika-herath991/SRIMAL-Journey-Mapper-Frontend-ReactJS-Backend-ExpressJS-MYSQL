@@ -14,7 +14,7 @@ function Home() {
         title="Your Journey Your Story"
         text="Choose Your favourite Destination."
         buttonText="Travel Plan"
-        url="/"
+        url="/travel-plan"
         btnClass="show"
       />     
       <Trip />

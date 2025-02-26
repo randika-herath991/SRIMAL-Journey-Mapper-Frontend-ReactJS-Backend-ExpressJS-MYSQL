@@ -237,6 +237,28 @@ app.post("/contact", (req, res) => {
   });
 });
 
+app.post("/travelplan", (req, res) => {
+  const { fullName, nic, mobileNumber, email, travelDate, venue, members, paymentMethod, specialRequest } = req.body;
+
+  if (!fullName || !nic || !mobileNumber || !travelDate || !email || !venue || !members || !paymentMethod) {
+    return res.status(400).json({ message: "All fields are required instead of Special Request" });
+  }
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: "Invalid email format" });
+  }
+
+  const query = "INSERT INTO travelplanstore (fullName, nic, mobileNumber, email, travelDate, venue, members, paymentMethod, specialRequest) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  db.query(query, [fullName, nic, mobileNumber, email, travelDate, venue, members, paymentMethod, specialRequest], (err, result) => {
+    if (err) {
+      console.log("Error inserting data:", err);
+      res.status(500).send("Error inserting data");
+      return;
+    }
+    res.status(200).json({ message: "Travel Plan Submission successfully!" });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

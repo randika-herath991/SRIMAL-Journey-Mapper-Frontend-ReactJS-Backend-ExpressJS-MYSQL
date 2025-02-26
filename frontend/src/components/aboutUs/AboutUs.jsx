@@ -4,7 +4,7 @@ function AboutUs() {
   return (
     <div className="about-container">
       <h1>Our History</h1>
-      <p>Founded in 2024, Ejax began as a small travel agency with a mission to simplify
+      <p>Founded in 2024, Journey Mapper began as a small travel agency with a mission to simplify
         and streamline corporate travel management. Over the years, we have grown into a trusted
         partner for businesses of all sizes, offering tailored solutions that ensure efficiency,
         cost savings, and seamless travel experiences. Through innovation and a focus on customer
@@ -19,7 +19,7 @@ function AboutUs() {
         exceptional service, technology-driven solutions, and continuous improvement makes us the
         trusted partner in managing business travel worldwide.</p>
         
-      <h1>Our History</h1>
+      <h1>Our Vision</h1>
       <p>our vision is to redefine the future of corporate travel by being the most trusted, innovative,
         and efficient travel management partner globally. We aim to empower businesses with intelligent
         solutions that simplify travel, reduce costs, and enhance the traveler experience. Through
