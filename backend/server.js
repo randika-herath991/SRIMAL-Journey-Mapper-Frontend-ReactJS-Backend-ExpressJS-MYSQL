@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 5000;
@@ -154,6 +155,22 @@ app.post("/signup", (req, res) => {
   });
 });
 
+function verifyToken(req, res, next) {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+
+  if (!token) {
+    return res.status(401).json({ message: "Access denied. No token provided." });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(400).json({ message: "Invalid token" });
+  }
+}
+
 app.post("/signin", (req, res) => {
   const { email, password } = req.body;
 
@@ -164,13 +181,24 @@ app.post("/signin", (req, res) => {
       return res.json({ message: "Error in login" });
     }
     if (data.length > 0) {
+      const user = data[0];
+      const token = jwt.sign(
+        { id: user.id, email: user.email, first_name: user.first_name },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
+
       console.log("Login successful");
-      return res.json({ message: "Login successful", user: data[0] });
+      return res.json({ message: "Login successful", token, user });
     } else {
       console.log("Login failed");
       return res.json({ message: "Invalid email or password" });
     }
   });
+});
+
+app.get("/protected", verifyToken, (req, res) => {
+  res.json({ message: "This is a protected route", user: req.user });
 });
 
 app.post("/forgotpassword", (req, res) => {

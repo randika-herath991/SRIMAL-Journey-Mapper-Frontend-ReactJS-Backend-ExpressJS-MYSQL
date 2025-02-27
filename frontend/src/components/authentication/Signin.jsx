@@ -55,6 +55,7 @@ function Signin() {
         password: password
       });
 
+      console.log("user token: ", response.data.token);
       console.log("user data: ", response.data.user);
       console.log("user first name: ", response.data.user.first_name);
       console.log("user last name: ", response.data.user.last_name);
@@ -65,6 +66,7 @@ function Signin() {
 
       if (response.data.message === "Login successful") {
         toast.success('Welcome ' + response.data.user.first_name);
+        localStorage.setItem('token', response.data.token);
         if (rememberMe) {
           localStorage.setItem('rememberedEmail', email);
           localStorage.setItem('rememberedPassword', password);
