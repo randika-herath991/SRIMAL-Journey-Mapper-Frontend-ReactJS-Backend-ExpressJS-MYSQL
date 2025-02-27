@@ -16,33 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `registrationstore`
+-- Table structure for table `travelplanstore`
 --
 
-DROP TABLE IF EXISTS `registrationstore`;
+DROP TABLE IF EXISTS `travelplanstore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `registrationstore` (
-  `registration_id` int NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `contact` varchar(45) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `confirm_password` varchar(45) NOT NULL,
-  PRIMARY KEY (`registration_id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
+CREATE TABLE `travelplanstore` (
+  `travelPlanID` int NOT NULL AUTO_INCREMENT,
+  `fullName` varchar(255) NOT NULL,
+  `nic` varchar(255) NOT NULL,
+  `mobileNumber` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `travelDate` datetime NOT NULL,
+  `venue` varchar(255) NOT NULL,
+  `members` varchar(255) NOT NULL,
+  `paymentMethod` varchar(255) NOT NULL,
+  `specialRequest` tinyint DEFAULT NULL,
+  PRIMARY KEY (`travelPlanID`),
+  UNIQUE KEY `nic` (`nic`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `registrationstore`
+-- Dumping data for table `travelplanstore`
 --
 
-LOCK TABLES `registrationstore` WRITE;
-/*!40000 ALTER TABLE `registrationstore` DISABLE KEYS */;
-INSERT INTO `registrationstore` VALUES (1,'Srimal','Herath','0776541234','srimalherath0290@gmail.com','(ga22o32FJ8!','(ga22o32FJ8!'),(2,'John','Allan','0778653245','john@gmail.com','OsX5mMgUBFK(','OsX5mMgUBFK('),(3,'James','Taylor','0776548877','james@gmail.com','XsX5mMgUBFK(','XsX5mMgUBFK('),(4,'Arshana','Kumara','0776543366','arshana@gmail.com','BsX5mMgUBFK(','BsX5mMgUBFK(');
-/*!40000 ALTER TABLE `registrationstore` ENABLE KEYS */;
+LOCK TABLES `travelplanstore` WRITE;
+/*!40000 ALTER TABLE `travelplanstore` DISABLE KEYS */;
+INSERT INTO `travelplanstore` VALUES (1,'Srimal Randika Herath','098766788v',778654322,'srimalherath0290@gmail.com','2025-02-27 00:00:00','Kandy','Unity','paypal',1),(2,'Gagani Perera','6876888655v',714576098,'gaga@gmail.com','2025-02-28 00:00:00','Kandy','Bandy','creditCard',0),(4,'Srimal Randika Herath','eererev',32323,'abba@gmail.com','2025-03-01 00:00:00','33','2323','creditCard',1);
+/*!40000 ALTER TABLE `travelplanstore` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
